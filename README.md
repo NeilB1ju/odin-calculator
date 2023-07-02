@@ -1,1 +1,1 @@
-# odin-calculator
+A calculator project made while following the odin project web development course.

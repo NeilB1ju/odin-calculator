@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    background-color:#f6f6f6;
+}
+
+
+.calculatorBody{
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 380px;
+    height: 500px;
+    background-color: #aaa;
+    border-radius: 15px;
+    outline: 2px solid black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+/* Styling the screen of the calculator that shows the result */
+.screenElement{
+    border-radius: 5px;
+    background-color: #eee;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.screen{
+    flex-direction: column;
+    height: 25%;
+    outline: 2px solid black;
+}
+
+.previousResult{
+    height: 40%;
+    font-size: 20px;
+}
+
+.currentCalculation{
+    height: 60%;
+    font-size: 40px;
+}
