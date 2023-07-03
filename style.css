@@ -23,7 +23,7 @@
     outline: 2px solid black;
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: 100px repeat(5,1fr);
+    grid-template-rows: minmax(110px,auto) repeat(5,1fr);
     gap: 10px;
     padding: 15px;
 }
@@ -45,6 +45,8 @@
     align-items: center;
     border-radius: 5px;
     padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .previousCalculation{
