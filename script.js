@@ -7,11 +7,14 @@ console.log(previousCalculation.innerHTML);
 const numbers=document.querySelectorAll(".numberButton"); 
 numbers.forEach(number => {
     number.addEventListener('click',() =>{
-        if(currentInput.innerHTML==="0"){
+        if(currentInput.innerHTML==="0" || currentInput.innerHTML==="Error!"){
             currentInput.innerHTML=number.innerHTML;
         }
         else{
-            currentInput.innerHTML=currentInput.innerHTML + number.innerHTML;
+            //Max length of user input is 12
+            if(currentInput.innerHTML.length<=11){
+                currentInput.innerHTML=currentInput.innerHTML + number.innerHTML;
+            }
         }
     });
 });
@@ -26,8 +29,14 @@ function calculate(operation,num1,num2){
         case "+" : return num1+num2;
         case "-" : return num1-num2;
         case "x" : return num1*num2;
-        case "÷" : return num1/num2;
-    }
+        case "÷" :  if(num2==0){
+                        //Divide by 0 error 
+                        currentInput.innerHTML="Error!"
+                    }   
+                    else{   
+                        return num1/num2;
+                    }                
+    }               
 }
 
 
@@ -58,8 +67,10 @@ operators.forEach(operator => {
                 }
                 //If an equal to sign exists 
                 else{
-                    previousCalculation.innerHTML=currentInput.innerHTML+" "+operator.innerHTML;
-                    currentInput.innerHTML="";
+                    if(currentInput.innerHTML!="Error!"){ //Checks for error 
+                        previousCalculation.innerHTML=currentInput.innerHTML+" "+operator.innerHTML;
+                        currentInput.innerHTML="";
+                    }
                 }
             }
         }
@@ -68,18 +79,27 @@ operators.forEach(operator => {
 
 
 
+//Equal button functionality
 const equal=document.querySelector(".equalButton");
 equal.addEventListener('click',()=>{
-    //Checks for an ongoing calculation and the presence of a = sign
-    if(previousCalculation.len!=0 && currentInput.innerHTML.length!=0){
+    //Checks for an ongoing calculation
+    if(previousCalculation.len!=0){
         let arr=previousCalculation.innerHTML.split(" ");
         if(arr.length==2){
             let num1=arr[0];
             let op=arr[1];
-            let num2=currentInput.innerHTML;
-            let result=calculate(op,num1,num2);
-            previousCalculation.innerHTML=previousCalculation.innerHTML + " " + num2 + " " + "="; 
-            currentInput.innerHTML=result.toString();
+            //Checks if there is a current input 
+            if(currentInput.innerHTML.length!=0){
+                let num2=currentInput.innerHTML;
+                let result=calculate(op,num1,num2);
+                previousCalculation.innerHTML=previousCalculation.innerHTML + " " + num2 + " " + "="; 
+                currentInput.innerHTML=result.toString();
+            }
+            //If there is no current input display the number from previousCalculation  
+            else{
+                currentInput.innerHTML=num1;
+                previousCalculation.innerHTML=""
+            }
         }
     }
 });
@@ -104,7 +124,6 @@ deleteButton.addEventListener('click', () => {
 });
 
 
-
 //Decimal button functionality
 const decimal=document.querySelector(".decimalButton");
 decimal.addEventListener('click', () => {
@@ -115,9 +134,3 @@ decimal.addEventListener('click', () => {
         currentInput.innerHTML=currentInput.innerHTML+".";
     }
 });
-
-
-//To do list
-//Think of a max length for input
-//Test and look for edge cases
-//numbers loop around when they get too long look into fixing that
