@@ -56,6 +56,8 @@ operators.forEach(operator => {
             else{
                 let arr=previousCalculation.innerHTML.split(" ");
                 //Checks for the presence of a equal to sign
+
+                //If an equal to sign exists
                 if(arr.length==2){
                     let num1=arr[0];
                     let op=arr[1];
@@ -65,7 +67,7 @@ operators.forEach(operator => {
                     previousCalculation.innerHTML=result + " " + operator.innerHTML;
                     currentInput.innerHTML="";
                 }
-                //If an equal to sign exists 
+                //If there is no equal to sign  
                 else{
                     if(currentInput.innerHTML!="Error!"){ //Checks for error 
                         previousCalculation.innerHTML=currentInput.innerHTML+" "+operator.innerHTML;
@@ -82,7 +84,7 @@ operators.forEach(operator => {
 //Equal button functionality
 const equal=document.querySelector(".equalButton");
 equal.addEventListener('click',()=>{
-    //Checks for an ongoing calculation
+    //Checks for an ongoing calculation (Text in previousCalculation)
     if(previousCalculation.len!=0){
         let arr=previousCalculation.innerHTML.split(" ");
         if(arr.length==2){
