@@ -11,7 +11,7 @@ numbers.forEach(number => {
             currentInput.innerHTML=number.innerHTML;
         }
         else{
-            //Max length of user input is 12
+            //Allows only upto 12 numbers in the user input 
             if(currentInput.innerHTML.length<=11){
                 currentInput.innerHTML=currentInput.innerHTML + number.innerHTML;
             }
@@ -21,7 +21,7 @@ numbers.forEach(number => {
 
 
 //Function to perform calculations
-let operation=""; //Keeps track of currently ongoing calculation
+let operation=""; //Keeps track of what mathematical operation is currently used
 function calculate(operation,num1,num2){
     num1=Number(num1);
     num2=Number(num2);
