@@ -1,7 +1,5 @@
 const currentInput=document.querySelector('.currentInput');
 const previousCalculation=document.querySelector('.previousCalculation');
-console.log(previousCalculation.innerHTML);
-
 
 //Lets you press the number buttons to add a number to the screen
 const numbers=document.querySelectorAll(".numberButton"); 
@@ -74,6 +72,13 @@ operators.forEach(operator => {
                         currentInput.innerHTML="";
                     }
                 }
+            }
+        }
+        //Allows the user to change the current operator being used
+        else{
+            arr=previousCalculation.innerHTML.split(" ");
+            if(arr.length==2 && currentInput.innerHTML.length==0){
+                previousCalculation.innerHTML=arr[0]+" "+operator.innerHTML;
             }
         }
     });
